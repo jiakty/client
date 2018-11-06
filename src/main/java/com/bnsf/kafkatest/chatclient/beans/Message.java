@@ -1,18 +1,19 @@
 package com.bnsf.kafkatest.chatclient.beans;
 
 public class Message {
-	private User user;
+	private String username;
 	private String message;
 	private long time;
 	public Message() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User getUser() {
-		return user;
+	
+	public String getUser() {
+		return username;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String user) {
+		this.username = user;
 	}
 	public String getMessage() {
 		return message;
@@ -28,7 +29,7 @@ public class Message {
 	}
 	@Override
 	public String toString() {
-		return "Message [user=" + user + ", message=" + message + ", time=" + time + "]";
+		return "Message [username=" + username + ", message=" + message + ", time=" + time + "]";
 	}
 	
 }

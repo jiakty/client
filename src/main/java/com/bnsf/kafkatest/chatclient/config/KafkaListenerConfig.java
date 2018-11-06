@@ -19,6 +19,8 @@ import com.bnsf.kafkatest.chatclient.beans.Message;
 
 
 
+
+
 @Configuration
 @EnableKafka
 public class KafkaListenerConfig {
@@ -37,7 +39,7 @@ public class KafkaListenerConfig {
 
     @Bean
     public ConsumerFactory<String, Message> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerProps(), stringKeyDeserializer(), messageJsonValueDeserializer());
+        return new DefaultKafkaConsumerFactory<>(consumerProps());
     }
 
 
@@ -50,17 +52,22 @@ public class KafkaListenerConfig {
 //        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 //        props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
-        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "1500");
+        props.put("key.deserializer",
+        	    "org.apache.kafka.common.serialization.StringDeserializer");
+        	props.put("value.deserializer",
+        	    "org.apache.kafka.common.serialization.StringDeserializer");
+        //props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.bnsf.kafkatest.chatclient.beans");
+        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000");
         return props;
     }
 
-    @Bean
-    public Deserializer stringKeyDeserializer() {
-        return new StringDeserializer();
-    }
-
-    @Bean
-    public Deserializer messageJsonValueDeserializer() {
-        return new JsonDeserializer(Message.class);
-    }
+//    @Bean
+//    public Deserializer stringKeyDeserializer() {
+//        return new StringDeserializer();
+//    }
+//
+//    @Bean
+//    public Deserializer messageJsonValueDeserializer() {
+//        return new JsonDeserializer(Message.class);
+//    }
 }
