@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 public class MessageConsumer {
     @KafkaListener(topics = "all.messages")
     public void onReceiving(ConsumerRecord<?, ?> consumerRecord) {
-    	System.out.println("Receiver on topic1: "+consumerRecord.toString());
+    	System.out.println(consumerRecord.value());
+    	//System.out.println("Receiver on topic1: "+consumerRecord.toString());
     }
 }
 

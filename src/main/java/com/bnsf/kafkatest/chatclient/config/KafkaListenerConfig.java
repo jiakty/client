@@ -49,25 +49,12 @@ public class KafkaListenerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConsumerProperties.getBootstrap());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaConsumerProperties.getGroup());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
-//        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-//        props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
         props.put("key.deserializer",
         	    "org.apache.kafka.common.serialization.StringDeserializer");
         	props.put("value.deserializer",
         	    "org.apache.kafka.common.serialization.StringDeserializer");
-        //props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.bnsf.kafkatest.chatclient.beans");
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000");
         return props;
     }
-
-//    @Bean
-//    public Deserializer stringKeyDeserializer() {
-//        return new StringDeserializer();
-//    }
-//
-//    @Bean
-//    public Deserializer messageJsonValueDeserializer() {
-//        return new JsonDeserializer(Message.class);
-//    }
 }
